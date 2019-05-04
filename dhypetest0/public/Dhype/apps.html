@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <meta charset="UTF-8">
+    <title>Dhype#</title>
+    <link rel="stylesheet" href="css.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body onload="updatecontentwidth();">
+    <div onclick="openlinks();" id="menuoverlay" style="position:fixed; width: 100vw; height: 100vh; background-color: white; opacity: 0.01; z-index: -1;"></div>
+
+    <div id="blur"></div>
+    <div id="nav">
+        <div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 20px;">d.hype#</div>
+        <div id="links" style="font-family:'Roboto Thin';user-select:none; color: white; position: absolute; font-size: 20px; left: 120px;">
+            <div style="left:0;" class="navlinks" onclick="window.location.href='indexnew.html'"><span class="linkstext">Maintenance</span></div>
+            <div class="navlinks" style="left:150px;" onclick="//window.location.href='maintenance.html'"><span class="linkstext">Projects</span></div>
+            <div style="left:300px" class="navlinks" onclick="//window.location.href='maintenance.html'"><span class="linkstext">Archive</span></div>
+            <div style="left:450px" class="navlinks" onclick="window.location.href='apps.html'"><span class="linkstext">Apps</span></div>
+        </div>
+    </div>
+    <div style="z-index: -1; overflow-y: overlay; position: fixed; left: 0; top: 0;width: 100vw; height: 100vh;">
+        <div id="contentwrapper">
+            <div id="appcard" class="cards">
+            </div>
+        </div>
+    </div>
+    <script src="apps.js"></script>
+</body>
+
+</html>

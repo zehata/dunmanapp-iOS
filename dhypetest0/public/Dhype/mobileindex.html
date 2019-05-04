@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dhype#</title>
+	<link rel="stylesheet" href="mobilecss.css">
+	<script src="index.js"></script>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet"> -->
+</head>
+<body onload="updatecontentwidth();">
+	<div id="blur"></div>
+	<div onclick="openlinks();" id="menuoverlay" style="position:fixed; width: 100vw; height: 100vh; background-color: white; opacity: 0.01; z-index: -1;"></div>
+	<div id="nav">
+		<div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 20px;">d.hype♯</div>
+		<img src="menu.png" style="width: 40px; padding: 10px; right: 0; position: absolute;" onclick="openlinks();" alt="">
+		<div id="links" style="font-family:'Roboto Thin';user-select:none; color: white; position: absolute; top: -100vh; font-size: 20px; ">
+			<div style="left:0;" class="mobilenavlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Maintenance</span></div>
+			<div class="mobilenavlinks"  onclick="window.location.href='maintenance.html'"><span class="linkstext">Projects</span></div><div class="mobilenavlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Archive</span></div><div class="mobilenavlinks" onclick="window.location.href='apps.html'"><span class="linkstext">Apps</span></div>
+		</div>
+</div>
+<div style="z-index: -1; overflow-y: overlay; position: fixed; left: 0; top: 0;width: 100vw; height: 100vh;"><div id="contentwrapper">
+	<div class="mobilecards"><strong>Flag-raising ceremony venue</strong>
+				<div class="titles">All</div>
+					<select id="fla" name="values" data-ordered="0" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Classrooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+				
+				<div class="titles">Year 1</div>
+				<select id="fl1" name="values" data-ordered="1" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Classrooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+				
+				<div class="titles">Year 2</div>
+				<select id="fl2" name="values" data-ordered="2" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Classrooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+				
+				<div class="titles">Year 3</div>
+				<select id="fl3" name="values" data-ordered="3" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Classrooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+				
+				
+				
+				<div class="titles">Year 4</div>
+				<select id="fl4" name="values" data-ordered="5" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Classrooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+				
+				<div class="titles">Year 5</div>
+				<select id="fl5" name="values" data-ordered="6" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Homerooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+				
+				<div class="titles">Year 6</div>
+				<select id="fl6" name="values" data-ordered="7" onchange="dropdown(this)" >
+					    <option value="1">Parade Square</option>
+					    <option value="2">Hall</option>
+					    <option value="3">Homerooms</option>
+					    <option value="4">Auditorium</option>
+					    <option value="5">Add other venues</option>
+					</select>
+
+				<div class="titles">Date</div>
+				<input type="date" id="fld" onchange="reloaddate(this);">
+	</div>
+	
+</div></div>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDfAkKocOAk3Elv9V5x0Po4NXuuGGCfdng",
+	    authDomain: "dhypetest0.firebaseapp.com",
+	    databaseURL: "https://dhypetest0.firebaseio.com",
+	    projectId: "dhypetest0",
+	    storageBucket: "",
+	    messagingSenderId: "677082806183"
+	  };
+	  firebase.initializeApp(config);
+	  var database = firebase.database();
+	
+	var flags = firebase.database().ref('appsstorage/a2/');
+	flags.on("value", function(snapshot) {
+		fldata = snapshot.val();
+		
+	if (!([datetoday] in fldata)){
+		createdate(datetoday);
+	} else {
+		daydata = fldata[datetoday];
+		updatedatedata();
+	}
+	});
+	</script>
+</body>
+</html>

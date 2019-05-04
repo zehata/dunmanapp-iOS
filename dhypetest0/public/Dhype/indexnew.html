@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dhype#</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css.css">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet"> -->
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#nav{
+			top: 0;
+		}
+		#container{
+			margin: auto;
+			padding-top: 60px;
+			padding-bottom: 10px;
+			width: 100%;
+			max-width: 1200px;
+		}
+		.appcardcontainer{
+			border-radius: 10px;
+			width: 94%;
+			margin-left: 3%;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			height: 500px;
+			display: inline-flex;
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+		.appcardnav{
+			width: 200px;
+			height: 100%;
+			border-top-left-radius: 10px;
+			border-bottom-left-radius: 10px;
+			display: inline-flex;
+			flex-direction: column;
+			overflow:hidden;
+		}
+		.appcardcontent{
+			background-color: white;
+			flex-grow: 1;
+			height: 100%;
+			border-top-right-radius: 10px;
+			border-bottom-right-radius: 10px;
+			width: 100%;
+		}
+		.appcardnavbtns{
+			width: 100%;
+			height: 25%;
+			background-color: rgb(47, 116, 179);
+			border:1px solid white;
+			border-bottom: none;
+		}
+		.appcardnavbtnsicon{
+			margin:auto;
+			width: 75px;
+			height: 75px;
+		}
+		.appcardnavbtnsiconimg{
+			width: 100%;
+			height: 100%;
+		}
+		.appcardnavbtnstext{
+			margin:auto;
+			width: fit-content;
+			margin-top: 10px;
+			cursor: default;
+		}
+		iframe.settings{
+			width: 100%;
+			height: 100%;
+			border: none;
+			border-top-right-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+		.slidertrack {
+		    height: 40px;
+		    width: 97px;
+		    border-radius: 22.5px;
+		    background-color: grey;
+		    border: grey 3px solid;
+		    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+		}
+
+		#savedslider {
+		    position: absolute;
+		    background-color: white;
+		    height: 40px;
+		    width: 60px;
+		    border-radius: 20px;
+		}
+
+		#activationslider {
+		    position: absolute;
+		    background-color: white;
+		    height: 40px;
+		    width: 60px;
+		    border-radius: 20px;
+		}
+
+		.container {
+		    display: block;
+		    position: relative;
+		    padding-left: 35px;
+		    margin-bottom: 12px;
+		    font-size: 22px;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		    width: fit-content;
+		}
+
+		/* Hide the browser's default checkbox */
+		.container input {
+		    position: absolute;
+		    opacity: 0;
+		    height: 0;
+		    width: 0;
+		}
+
+		/* Create a custom checkbox */
+		.checkmark {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    height: 20px;
+		    width: 20px;
+		    border-radius: 5px;
+		    border: 2px solid rgb(0, 32, 96);
+		}
+
+		/* When the checkbox is checked, add a blue background */
+		.container input:checked ~ .checkmark {
+		    background-color: rgb(0, 32, 96);
+		}
+
+		/* Create the checkmark/indicator (hidden when not checked) */
+		.checkmark:after {
+		    content: "";
+		    position: absolute;
+		    display: none;
+		}
+
+		/* Show the checkmark when checked */
+		.container input:checked ~ .checkmark:after {
+		    display: block;
+		}
+
+		/* Style the checkmark/indicator */
+		.container .checkmark:after {
+		    left: 6px;
+		    top: 3px;
+		    width: 5px;
+		    height: 10px;
+		    border: solid white;
+		    border-width: 0 3px 3px 0;
+		    border-radius: 1px;
+		    -webkit-transform: rotate(45deg);
+		    -ms-transform: rotate(45deg);
+		    transform: rotate(45deg);
+		}
+		.appcardnavbtna{
+			border-top-left-radius: 10px;
+		}
+		.appcardnavbtnd{
+			border-bottom-left-radius: 10px;
+			border-bottom: 1px solid white;
+		}
+		.adv{
+			background-color: red;
+			width: fit-content;
+			border-radius: 5px;
+			color:white;
+			padding: 5px;
+			margin-left: 15px;
+			margin-top: 15px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="blur"></div>
+	<div onclick="//openlinks();" id="menuoverlay" style="position:fixed; width: 100vw; height: 100vh; background-color: white; opacity: 0.01; z-index: -1;"></div>
+	<div id="nav">
+		<div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 20px;">d.hype#</div>
+		<div id="links" style="font-family:'Roboto Thin';user-select:none; color: white; position: absolute; font-size: 20px; left: 120px;">
+			<div style="left:0;" class="navlinks" onclick="window.location.href='index.html'"><span class="linkstext">Maintenance</span></div>
+			<div class="navlinks" style="left:150px;" onclick="// window.location.href='maintenance.html'"><span class="linkstext">Projects</span></div>
+			<div style="left:300px" class="navlinks" onclick="// window.location.href='maintenance.html'"><span class="linkstext">Archive</span></div>
+			<div style="left:450px" class="navlinks" onclick="window.location.href='apps.html'"><span class="linkstext">Apps</span></div>
+		</div>
+	</div>
+
+	<div id="container">
+		<div style="width: 100%; text-align: center; margin-top: 50%;">Loading...</div>
+	</div>
+
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script>
+		var appids = [];
+		var finishedloading = 0;
+		var selection = [];
+
+		function getdata(id){
+			return appsstorage[id];
+		}
+
+		function savedata(id,data){
+			if(Array.isArray(data)){
+				data = Object.assign({}, data);
+			}
+			database.ref('/appsstorage/'+id).transaction(function(currentData){
+				return data;
+			});
+			database.ref('/reccards/algo/').once("value",function(snapshot){
+				database.ref('/reccards/algo/').update({"version":Number(snapshot.val().version)+1});
+			});
+		}
+
+		function returnUserRight(id){
+			return ["Owner","SC IC","Technical IC","CCA IC","SC Member","Comp/ICC Member","SC/CCA"][adminraw[id][convertedusername]];
+		}
+
+		function getAllAdmins(id){
+			var names = Object.keys(adminraw[id])
+			var convertednames = [];
+			for(var i = 0; i < names.length; i++){
+	    		convertednames.push(names[i].replace(new RegExp("\\?","g"),"."));
+			}
+			return convertednames;
+		}
+
+		function pushdata(id,path,data){
+			if(Array.isArray(data)){
+				data = Object.assign({}, data);
+			}
+			firebase.database().ref('/appsstorage/'+id+'/'+path+'/').transaction(function(currentData){
+				if(currentData){
+					if(Array.isArray(currentData)){
+						currentData.push(data);
+						currentData = Object.assign({}, currentData);
+						return currentData;
+					} else {
+						console.log("The path provided does not point to an array and it is not empty.")
+						return;
+					}
+				} else {
+					return {0:data};
+				}
+			});
+		}
+
+		function transactdata(id,path,data){
+			if(Array.isArray(data)){
+				data = Object.assign({}, data);
+			}
+			firebase.database().ref('/appsstorage/'+id+'/'+path+'/').transaction(function(currentData){
+				return data;
+			});
+		}
+
+		function selectappcardnavbtn(app,btn){
+			for(var i = 0; i < 4; i++){
+				document.getElementById("appcardnavbtns"+app+['a','b','c','d'][i]).style.backgroundColor="rgb(47, 116, 179)";
+				document.getElementById("appcardnavbtnsiconimg"+app+['a','b','c','d'][i]).src=['a','b','c','d'][i]+"bef.png";
+			}
+			document.getElementById("appcardnavbtns"+app+btn).style.backgroundColor="white";
+			document.getElementById("appcardnavbtnsiconimg"+app+btn).src=btn+"aft.png";
+			document.getElementById('appcardcontent'+app).innerHTML = "";
+
+			if(btn == 'a'){
+				document.getElementById('appcardcontent'+app).innerHTML = "<div style='padding:15px;'><div>App name: "+appidnamemap[appids[app]]+"</div><div>Latest version number: "+versionnumbers[app][0]+"</div><div>Activated version number: "+versionnumbers[app][1]+"</div><div>Saved to users' devices: "+saved[app]+"</div><div>Activated and displayed on users' devices: "+activated[app]+"</div></div>";
+			}
+
+			if(btn == 'b'){
+				if (finishedloading == 1){
+					if(appswithsettings[appids[app]]){
+						var settingsiframe = document.createElement('iframe');
+						settingsiframe.id = "settings"+app;
+						settingsiframe.className = "settings";
+						settingsiframe.srcdoc = "<script>function getappdata(){ var data = parent.getdata(\""+appids[app]+"\"); return data; } function savedata(data){parent.savedata(\""+appids[app]+"\", data);}; function getAllAdmins(){ var admins = parent.getAllAdmins(\""+appids[app]+"\"); return admins;} function getUserRight(){ var right = parent.returnUserRight(\""+appids[app]+"\"); return right; } function getStudentName(){return localStorage.getItem('googleaccountname');} function getStudentEmail(){return localStorage.getItem('googleaccountemail');} function pushdata(path,data){ parent.pushdata(\""+appids[app]+"\",path,data); } function transactdata(path,data){ parent.transactdata(\""+appids[app]+"\",path,data); } </sc" + "ript>" + appswithsettings[appids[app]];
+						document.getElementById('appcardcontent'+app).innerHTML = "";
+						document.getElementById('appcardcontent'+app).appendChild(settingsiframe);
+					} else {
+						document.getElementById('appcardcontent'+app).innerHTML = "<div style='position:relative; top: 48%; width:100%; text-align:center;'>This app has no maintenance settings</div>";
+					}
+				} else {
+					document.getElementById('appcardcontent'+app).innerHTML = "<div style='position:relative; top: 48%; width:100%; text-align:center;'>Loading maintenance settings. Try again.</div>";
+				}
+			}
+
+			if (btn == 'c'){
+				document.getElementById('appcardcontent'+app).innerHTML = `<div style="padding: 15px;">
+					<div style='display: inline-flex;'><div>Condition: </div><select onchange="reccond(`+app+`);" id="reccond`+app+`"><option value="always">Always</option><option value="time">Time</option><option value="day">Day</option><option value="never">Never</option></select></div>
+					<div id="reccontent`+app+`">
+					</div>
+					<div>Priority: <input id="priority`+app+`" type="number" min="0" max="1" onchange="savepriorities(`+app+`);" value=`+priorities[app]+`></input></div>
+					</div>`;
+
+				if(recommendationtimes[app] == true){
+					document.getElementById('reccond'+app).selectedIndex = 0;
+				} else if (recommendationtimes[app] == false){
+					document.getElementById('reccond'+app).selectedIndex = 3;
+				} else if (typeof recommendationtimes[app] == "object"){
+					if(recommendationtimes[app][0] == "time"){
+						document.getElementById('reccond'+app).selectedIndex = 1;
+						document.getElementById('reccontent'+app).innerHTML = '						<div id="reccontentcont'+app+'" style="margin-top: 15px; display: flex; flex-direction: column;">						</div>						<div onclick="addtime('+app+');" style="padding: 5px; width: fit-content; border-radius: 5px; background-color: rgb(0, 32, 96); color:white;">+ Add</div>';
+						parsetimeforapp(app);
+					} else if (recommendationtimes[app][0] == "day"){
+						document.getElementById('reccond'+app).selectedIndex = 2;
+						parsedayforapp(app);
+					}
+				}
+			}
+
+			if(btn == 'd'){
+				if (enableadvanced){
+					document.getElementById("appcardcontent"+app).innerHTML = "<div class='adv' onclick='gotopreview(\""+appids[app]+"\")'>Advanced settings</div>"
+				} else {
+					document.getElementById("appcardcontent"+app).innerHTML = "";
+				}
+			}
+
+			selection[app] = btn;
+		}
+
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDfAkKocOAk3Elv9V5x0Po4NXuuGGCfdng",
+	    authDomain: "dhypetest0.firebaseapp.com",
+	    databaseURL: "https://dhypetest0.firebaseio.com",
+	    projectId: "dhypetest0",
+	    storageBucket: "",
+	    messagingSenderId: "677082806183"
+	  };
+	  firebase.initializeApp(config);
+	  var database = firebase.database();
+
+
+	var algo = {};
+	var appswithsettings = [];
+	var appidnamemap = {};
+	var preappversion = [];
+
+	var firsttime = true;
+	populate();
+
+	function reccond(app){
+		if(document.getElementById('reccond'+app).value == "always"){
+			recommendationtimes[app] = true;
+			document.getElementById('reccontent'+app).innerHTML = "";
+			database.ref('reccards/algo/').update({[appids[app]]:[recommendationtimes[app],priorities[app]]});
+		} else if (document.getElementById('reccond'+app).value == "time"){
+			recommendationtimes[app] = ["time","00:0023:59"];
+			document.getElementById('reccontent'+app).innerHTML = '						<div id="reccontentcont'+app+'" style="margin-top: 15px; display: flex; flex-direction: column;">						</div>						<div onclick="addtime('+app+');" style="padding: 5px; width: fit-content; border-radius: 5px; background-color: rgb(0, 32, 96); color:white;">+ Add</div>';
+			parsetimeforapp(app);
+			savetime(app,1);
+		} else if (document.getElementById('reccond'+app).value == "day") {
+			recommendationtimes[app] = ["day",false,false,false,false,false,false,false];
+			parsedayforapp(app);
+			saveday(app);
+		} else {
+			document.getElementById('reccontent'+app).innerHTML = "";
+			recommendationtimes[app] = false;
+			database.ref('reccards/algo/').update({[appids[app]]:[recommendationtimes[app],priorities[app]]});
+		}
+	}
+
+	var recommendationtimes = [];
+
+	function addtime(app){
+		recommendationtimes[app].push("00:0000:00")
+		parsetimeforapp(app);
+		savetime(app,(recommendationtimes[app].length-1));
+	}
+
+	function removetime(el){
+		var app = el.getAttribute('data-app');
+		var time = el.getAttribute('data-time');
+		recommendationtimes[app].splice(time,1);
+		parsetimeforapp(0);
+	}
+
+	function parsetimeforapp(app){
+		document.getElementById('reccontentcont'+app).innerHTML = "";
+		for(var i = 1; i < recommendationtimes[app].length; i++){
+			var starthour = recommendationtimes[app][i][0]+recommendationtimes[app][i][1];
+			var startminute = recommendationtimes[app][i][3]+recommendationtimes[app][i][4];
+			var endhour = recommendationtimes[app][i][5]+recommendationtimes[app][i][6];
+			var endminute = recommendationtimes[app][i][8]+recommendationtimes[app][i][9];
+			var newtime = document.createElement('div');
+			newtime.style.display = "inline-flex";
+			newtime.id = "time"+app+"-"+i;
+			newtime.innerHTML = 'Between <input id="time'+app+'-'+i+'-0" value="'+starthour+':'+startminute+'" type="time" onchange="savetime('+app+','+i+')"> and <input value="'+endhour+':'+endminute+'" id="time'+app+'-'+i+'-1" type="time" onchange="savetime('+app+','+i+')"><div style="margin-left: 10px;"  data-app="'+app+'" data-time="'+i+'" onclick="removetime(this)">✖</div>';
+			document.getElementById('reccontentcont'+app).appendChild(newtime);
+		}
+	}
+
+	function parsedayforapp(app){
+		document.getElementById('reccontent'+app).innerHTML = `
+						<label class="container">Monday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-1" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>
+						<label class="container">Tuesday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-2" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>
+						<label class="container">Wednesday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-3" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>
+						<label class="container">Thursday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-4" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>
+						<label class="container">Friday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-5" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>
+						<label class="container">Saturday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-6" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>
+						<label class="container">Sunday
+						  <input onchange="saveday(`+app+`);" id="day`+app+`-0" type="checkbox">
+						  <div class="checkmark"></div>
+						</label>`;	
+		for(var i = 1; i < 8; i++){
+			document.getElementById('day'+app+'-'+(i-1)).checked = recommendationtimes[app][i];
+		}	
+	}
+
+	function createcondition(app,type){
+		if (type == "time"){
+			var timelist = ["time"];
+			for(var i = 0; i < recommendationtimes[app].length; i++){
+				var starttime = recommendationtimes[app][i].slice(0,5);
+				var endtime = recommendationtimes[app][i].slice(5,10);
+				var startminute = calculateminutes(starttime);
+				var endminute = calculateminutes(endtime); 
+				if(startminute >= endminute){
+					timelist.push([0,endminute]);
+					timelist.push([startminute,2359]);
+				} else {
+					timelist.push([startminute,endminute]);
+				}
+			}
+		} else if (type == "day"){
+			var daylist = ["day"];
+			for(var i = 0; i < recommendationtimes[app].length; i++){
+				daylist.push(recommendationtimes[app][i]);
+			}
+		}
+	}
+
+	function calculateminutes(time){
+		var hours = 10*Number(time[0])+Number(time[1]);
+		var minutes = 10*Number(time[3])+Number(time[4]);
+		return (60*hours+minutes);
+	}
+
+	var priorities = [];
+
+	function parsealgo(algo){
+		recommendationtimes = [];
+		priorities = [];
+		for(var i = 0; i < appids.length; i++){
+			recommendationtimes.push(algo[appids[i]][0]);
+			priorities.push(algo[appids[i]][1]);
+		}
+	}
+
+	function savepriorities(app){
+		priorities[app] = document.getElementById('priority'+app).value;
+		database.ref('reccards/algo/').update({[appids[app]]:[recommendationtimes[app],priorities[app]]});
+	}
+
+	function savetime(app,time){
+		var starttime = document.getElementById('time'+app+'-'+time+'-0').value;
+		var endtime = document.getElementById('time'+app+'-'+time+'-1').value;
+		var savedtime = starttime + endtime;
+		recommendationtimes[app][time] = savedtime;
+		database.ref('reccards/algo/').update({[appids[app]]:[recommendationtimes[app],priorities[app]]});
+	}
+
+	function saveday(app){
+		var daylist = ["day"];
+		for(var i = 0; i < 7;i++){
+			daylist.push(document.getElementById('day'+app+'-'+i).checked);
+		}
+		recommendationtimes[app] = daylist;
+		database.ref('reccards/algo/').update({[appids[app]]:[recommendationtimes[app],priorities[app]]});
+	}
+
+	var convertedusername = "";
+	var username = "";
+
+	try{
+	    username = localStorage.getItem('googleaccountemail');
+	    convertedusername = username.replace(new RegExp("\\.","g"),"?");
+	} catch (e){}
+
+	var allpreapps = "";
+	var versionnumbers = [];
+	var saved = [];
+	var activated = [];
+	var appsstorage = {};
+	var adminraw = {};
+
+	var enableadvanced = false;
+
+	function populate(){
+		database.ref().on("value",function(snapshot){
+			var all = snapshot.val();
+			var appsversionraw = all.appsversion;
+			var apps = all.apps;
+	        adminraw = all.admins;
+	        var applist = all.appsversion.applist;
+	        appsstorage = all.appsstorage;
+	        allpreapps = all.preapps;
+	        var objectedpreapps = Object.entries(allpreapps);
+	        for(var j = 0; j < objectedpreapps.length; j++){
+	            if(objectedpreapps[j][0] != "placeholder"){
+	                if(adminraw[objectedpreapps[j][0]].hasOwnProperty(convertedusername)){
+	                	if(adminraw[objectedpreapps[j][0]][convertedusername] != 3 && adminraw[objectedpreapps[j][0]][convertedusername] != 6){
+	                		enableadvanced = true;
+	                	}
+	                	versionnumbers.push([objectedpreapps[j][1].version,appsversionraw[objectedpreapps[j][0]]])
+	                	var appactivated = false;
+	                	for(var k = 0; k < applist.length; k++){
+	                		if (applist[k][2] == objectedpreapps[j][0]){
+	                			appactivated = true;
+	                		}
+	                	}
+	                	if(appactivated){
+	                		activated.push("Yes");
+	                	} else {
+	                		activated.push("No");
+	                	}
+	                	if(apps[objectedpreapps[j][0]]){
+	                		saved.push("Yes");
+	                	} else {
+	                		saved.push("No");
+	                	}
+	                	recommendationtimes.push([]);
+	                    appids.push(objectedpreapps[j][0]);
+	                }
+	            }
+				if(objectedpreapps[j] != "placeholder"){
+					appidnamemap[objectedpreapps[j][0]] = objectedpreapps[j][1]["name"];
+				}
+				if(selection[j] == 'b'){
+					try{document.getElementById('settings'+j).contentWindow.onDataChanged(appsstorage[objectedpreapps[j][0]]);}catch(e){}
+				}
+	        }
+	        if(firsttime){
+		        document.getElementById('container').innerHTML = "";
+		        for (var i = 0; i < appids.length; i++) {
+	                selection.push('a');
+		        	var card = document.createElement('div');
+		        	card.className = "appcardcontainer";
+					card.innerHTML = `
+						<div class="appcardnav">
+							<div class="appcardnavbtns appcardnavbtna" id="appcardnavbtns`+i+`a" onclick="selectappcardnavbtn(`+i+`,'a');">
+								<div class="appcardnavbtnsicon">
+									<img class="appcardnavbtnsiconimg" id="appcardnavbtnsiconimg`+i+`a" src="abef.png" alt="">
+								</div>
+								<div class="appcardnavbtnstext">General</div>
+							</div>
+							<div class="appcardnavbtns" id="appcardnavbtns`+i+`b"  onclick="selectappcardnavbtn(`+i+`,'b');">
+								<div class="appcardnavbtnsicon">
+									<img class="appcardnavbtnsiconimg" id="appcardnavbtnsiconimg`+i+`b" src="bbef.png" alt="">
+								</div>
+								<div class="appcardnavbtnstext">Maintenance</div>
+							</div>
+							<div class="appcardnavbtns" id="appcardnavbtns`+i+`c"  onclick="selectappcardnavbtn(`+i+`,'c');">
+								<div class="appcardnavbtnsicon">
+									<img class="appcardnavbtnsiconimg" id="appcardnavbtnsiconimg`+i+`c" src="cbef.png" alt="">
+								</div>
+								<div class="appcardnavbtnstext">Recommendation</div>
+							</div>
+							<div class="appcardnavbtns appcardnavbtnd" id="appcardnavbtns`+i+`d"  onclick="selectappcardnavbtn(`+i+`,'d');">
+								<div class="appcardnavbtnsicon">
+									<img class="appcardnavbtnsiconimg" id="appcardnavbtnsiconimg`+i+`d" src="dbef.png" alt="">
+								</div>
+								<div class="appcardnavbtnstext">Advanced</div>
+							</div>
+						</div>
+						<div class="appcardcontent" id="appcardcontent`+i+`">
+						</div>`;
+					document.getElementById('container').appendChild(card);
+		        }
+				for(var i = 0; i < appids.length;i++){
+					selectappcardnavbtn(i,'a');
+				}
+				firsttime = false;
+			}
+			for(var i = 0; i < objectedpreapps.length; i++){
+				if(objectedpreapps[i][0] != "test"){
+					if(objectedpreapps[i][1].flag){
+						if(objectedpreapps[i][1].flag.hasMaintenanceSettings && objectedpreapps[i][1].hasOwnProperty("maintenance?html")){
+							appswithsettings[objectedpreapps[i][0]] = objectedpreapps[i][1]["maintenance?html"];
+						}
+					}
+				}
+			}
+			finishedloading = 1;
+			parsealgo(all.reccards.algo);
+		});		
+	}
+
+	function gotopreview(id) {
+	    localStorage.setItem("preview", JSON.stringify(allpreapps[id]));
+	    localStorage.setItem('previewid', id);
+	    window.location.href = 'preview.html';
+	}
+
+	function updatecontentwidth(){
+		viewportwidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		if (viewportwidth >= 1000){
+			document.getElementById('nav').style.backgroundColor = "transparent";
+			document.getElementById('nav').style.background = "linear-gradient(to right, rgb(0, 32, 96), rgba(0,0,0,0) 95%);";
+			document.getElementById('nav').innerHTML = `<div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 20px;">d.hype♯</div>
+			<div id="links" style="font-family:'Roboto Thin';user-select:none; color: white; position: absolute; font-size: 20px; left: 120px;">
+				<div style="left:0;" class="navlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Maintenance</span></div>
+				<div class="navlinks" style="left:150px;" onclick="window.location.href='maintenance.html'"><span class="linkstext">Projects</span></div><div style="left:300px" class="navlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Archive</span></div><div style="left:450px" class="navlinks" onclick="window.location.href='apps.html'"><span class="linkstext">Apps</span></div>
+			</div>`;
+		} else if (viewportwidth <= 1000 && viewportwidth >= 720){
+			document.getElementById('nav').style.backgroundColor = "transparent";
+			document.getElementById('nav').style.background = "linear-gradient(to right, rgb(0, 32, 96), rgba(0,0,0,0) 95%);";
+			document.getElementById('nav').innerHTML = `<div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 20px;">d.hype♯</div>
+			<div id="links" style="font-family:'Roboto Thin';user-select:none; color: white; position: absolute; font-size: 20px; left: 120px;">
+				<div style="left:0;" class="navlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Maintenance</span></div>
+				<div class="navlinks" style="left:150px;" onclick="window.location.href='maintenance.html'"><span class="linkstext">Projects</span></div><div style="left:300px" class="navlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Archive</span></div><div style="left:450px" class="navlinks" onclick="window.location.href='apps.html'"><span class="linkstext">Apps</span></div>
+			</div>`;
+		} else {
+			document.getElementById('nav').style.backgroundColor = "rgb(0, 32, 96)";
+			document.getElementById('nav').innerHTML = `<div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 20px;">d.hype♯</div>
+			<img src="menu.png" style="width: 40px; padding: 10px; right: 0; position: absolute;" onclick="openlinks();" alt="">
+			<div id="links" style="font-family:'Roboto Thin';user-select:none; color: white; position: absolute; top: -100vh; font-size: 20px; ">
+				<div style="left:0;" class="mobilenavlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Maintenance</span></div>
+				<div class="mobilenavlinks"  onclick="window.location.href='maintenance.html'"><span class="linkstext">Projects</span></div><div class="mobilenavlinks" onclick="window.location.href='maintenance.html'"><span class="linkstext">Archive</span></div><div class="mobilenavlinks" onclick="window.location.href='apps.html'"><span class="linkstext">Apps</span></div>
+			</div>`;
+		}
+	}
+
+	updatecontentwidth();
+
+	window.addEventListener("resize", function(event) {
+		updatecontentwidth();
+	});
+	var islinksopen = "closed";
+	function openlinks(){
+		if (islinksopen == "closed"){
+			document.getElementById('links').style.top="60px";
+			document.getElementById('menuoverlay').style.zIndex = 1;
+			var links = document.getElementsByClassName('mobilenavlinks');
+			for(var k = 0; k < links.length; k++){
+				links[k].style.opacity = 1;
+				links[k].style.top = 0;
+			}
+			islinksopen = "open";
+		} else {
+			document.getElementById('menuoverlay').style.zIndex = -1;
+			var links = document.getElementsByClassName('mobilenavlinks');
+			for(var k = 0; k < links.length; k++){
+				links[k].style.opacity = 0;
+				links[k].style.top = "-300px";
+			}
+			islinksopen = "closed";
+			setTimeout(function(){document.getElementById('links').style.top="-100vh";},300);
+		}
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Preview</title>
+    <link rel="stylesheet" href="preview.css">
+</head>
+
+<body>
+    <div id="nav">
+        <div onclick="window.history.back();" style="height: calc(100% - 20px); width: 50px; padding: 10px;"><img style="height: 100%;" src="backwhite.png" alt=""></div>
+        <div style="user-select:none; font-family:'Lobster'; color: white; position: absolute; top: 15px;font-size: 20px; left: 70px;">d.hype#</div>
+</div>
+
+    <div style="position: fixed; top: 0; left: 0; display: inline-flex;width: 100vw; height: 100vh;">
+        <div style="padding: 10px; padding-right: 0;
+    min-width: calc(calc(100vh - 80px) * 9/16 - 10px);
+    min-height: calc(100vh - 80px); width: calc(calc(100vh - 80px) * 9/16 - 10px);
+    height: calc(100vh - 80px); margin-top: 60px;">
+            <iframe src="about:blank" id="preview" seamless frameborder="0"></iframe>
+        </div>
+        <div style="height: 100vh;
+    flex-grow: 1;
+    overflow-y: overlay;">
+            <div id="sidebar">
+                <div id="updatenot"><img style='height:18px; width:18px; padding:0px; margin-right:4px;' src='alert.png' />This app has been updated. Review any changes and reactivate to update the app.</div>
+                <div class="dialogue" id="generaldialogue">
+                    <div class="dialogueheader">
+                        <div style="user-select: none;margin-top: 15px; margin-left: 15px;">Information</div>
+                    </div>
+                    <div id="nameinputwrapper" style="padding: 10px; padding-bottom: 0;">Name: <input type="text" id="nameinput"/></div>
+                    <div id="currentversionnumber" style="padding: 10px; padding-bottom: 0;">Latest version number: </div>
+                    <div id="activatedversionnumber" style="padding: 10px;">Activated version number: </div>
+                </div>
+                <div class="dialogue" id="dialogue">
+                    <div class="dialogueheader">
+                        <div style="user-select: none;margin-top: 15px; margin-left: 15px;">Administrators</div>
+                    </div>
+                    <div style="top: 50px; height:500px;width:100%;overflow: overlay; display:flex; flex-direction: column; flex-grow: 1;">
+                        <textarea style="font-family: Roboto, Helvetica, Segoe UI, Arial;" name="" id="addadmins" placeholder="Add administrators by email" cols="30" rows="10"></textarea>
+                        <div style="display: flex; margin-bottom: 10px;">
+                        <select id="newadminsright">
+                            <option value="1">SC Member</option>
+                            <option value="2">Comp/ICC Member</option>
+                            <option value="3">CCA IC</option>
+                            <option value="4">SC/CCA</option>
+                        </select>
+                        <div onclick="addadmin();" id="addadminsbtn">Add</div></div>
+                        <div id="admins">
+                            <div style="color:white; background-color: rgb(0, 32, 96);" class="admins"><div style="flex-grow: 1;">Admins</div>
+                                <div class="rights">Role</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialogue" id="activationdialogue">
+                    <div class="dialogueheader">
+                        <div style="user-select: none;margin-top: 15px; margin-left: 15px;">Activation</div>
+                    </div>
+                    <div class="activation" id="saved">Saved to users' devices
+                        <div class="slidertrack">
+                            <div id="savedslider"></div>
+                        </div>
+                    </div>
+                    <div class="activation" id="displayed">Activated and displayed on users' devices
+                        <div class="slidertrack">
+                            <div id="activationslider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialogue" id="databasedialogue">
+                    <div class="dialogueheader">
+                        <div style="user-select: none;margin-top: 15px; margin-left: 15px; flex-grow: 1;">Database</div>
+                        <div style="user-select: none; padding: 3px; margin-right: 15px;"><div onclick="triggerfileupload();" id="import" class="eximp">IMPORT JSON</div></div>
+                        <div style="user-select: none; padding: 3px; margin-right: 15px;"><div id="export" class="eximp">EXPORT JSON</div></div>
+                    </div>
+                    <div id="databasebox">
+                        <div class="databaselabel">/</div>
+                    </div>
+                    <div class="beta">This feature is still extremely unstable. It is recommended that you use the import and export functions</div>
+                </div>
+                <div class="dialogue" id="filesdialogue">
+                    <div class="dialogueheader">
+                        <div style="user-select: none;margin-top: 15px; margin-left: 15px;">Files</div>
+                    </div>
+                	<div id="filesbox" ondrop="dropHandler(event);this.style.border='none';" ondragleave="this.style.border='none';" ondragover="this.style.border='1px solid blue';">
+                		<!-- <div class="file"><div class="filename">index.html</div><div onclick="deletefile('index?html');" class="deletefile">✖</div></div> -->
+                	</div>
+	                <div id="choosefile" ondrop="dropHandler(event);this.style.border='2px solid rgb(0, 32, 96)';" ondragleave="this.style.border='2px solid rgb(0, 32, 96)';" ondragover="this.style.border='1px solid blue';"><div style="margin-top: 30px;">Choose a file</div>
+    	                <input id="upload" multiple type="file" />
+	                </div>
+                </div>
+                <div class="dialogue" id="flagdialogue">
+                    <div class="dialogueheader">
+                        <div style="user-select: none;margin-top: 15px; margin-left: 15px;">Flags</div>
+                    </div>
+                    <textarea name="" id="flags" cols="30" rows="10"></textarea>
+                    <div onclick="saveflags();" style="margin-bottom: 10px; display: inline-flex; width: calc(100% - 10px); padding-right: 10px;"><div style="flex-grow: 1;"></div><div id="saveflags">Save</div></div>
+                </div>
+    <div class="dialogue" id="deleteappdialogue"><div id="deleteapp" onclick="trydeleteapp();"><div style="margin: auto; width: fit-content; padding-top: 20px; padding-bottom: 20px;">Delete this app</div></div></div>
+            </div>
+        </div>
+    </div>
+    <div id="darken2">
+        <div id="confirmdelete"><div style="flex-grow: 1; font-weight: bold; font-size: 1.2em;">Are you sure you want to delete this app?</div><div id="actuallydelete" onclick="deleteapp()">Yes, delete this app (permanent!)</div><div id="canceldelete" onclick="canceldeleteapp();">Cancel</div></div>
+
+    </div>
+    <div id="darken">
+        <div id="duplicatedialog">
+            <div id="duplicatetitle">These files already exists, if you choose to upload anyway, these files will be overwritten.</div>
+            <div id="duplicatescontainer">
+                <!-- <div class="duplicatefilebox"><div class="duplicatename">index.html</div><div class="overwritesingular">Overwrite</div><div class="cancelsingular">Cancel</div></div> -->
+            </div>
+            <div id="allactions">
+                <div style="flex-grow: 1;"></div>
+                <div id="overwritebtn" onclick="overwriteall();">Overwrite all</div>
+                <div id="canceloverwritebtn" onclick="cancelall();">Cancel all</div>
+            </div>
+        </div>
+    </div>
+    <input type="file" style="display: none;" onchange="readasjson();" id="JSONupload">
+   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="preview.js"></script>
+</body>
+
+</html>
