@@ -629,8 +629,16 @@ var applist = JSON.parse(localStorage.getItem('applist'));
 function populatedrawer(applist){
     for(var i = 0; i < applist.length; i++){
         var applisting = document.createElement('DIV');
+        var applistid = applist[i][0];
+        var appname = "";
+        var appdirectory = JSON.parse(localStorage.getItem('applist'));
+        for(var j = 0; j < appdirectory.length; j++){
+            if(appdirectory[j][2] == applistid){
+                appname = appdirectory[j][0];
+            }
+        }
         applisting.className = "allapps";
-        applisting.innerHTML = "<div onclick=\"goto("+i+");\" style=\"display:inline-flex; width:calc(100% - 20px);\"><div class=\"allappsnames\">"+applist[i][0]+"</div><div style=\"padding-top:15px;\"></div></div>";
+        applisting.innerHTML = "<div onclick=\"goto('"+applistid+"');\" style=\"display:inline-flex; width:calc(100% - 20px);\"><div class=\"allappsnames\">"+appname+"</div><div style=\"padding-top:15px;\"></div></div>";
         if(i == (applist.length-1)){
             applisting.style.borderBottom = "none";
         }
