@@ -37,23 +37,14 @@
         <div id="allappscont"></div>
     <script>
 
-    	function eligibleForApp(eligibles){
-    		/* 
-    		var eligibles = {
-				"Y1":true,
-				"Y2":true,
-				"Y3":true,
-				"Y4":true,
-				"Y5":true,
-				"Y6":true,
-				"zenon?hans?taneka@dhs?sg":true,
-				"others":true,
-    		}
-    		*/
+    	function eligibleForApp(appid){
     		var studentlvl = localStorage.getItem('studentlvl');
     		var year = 'Y'+studentlvl;
-    		var studentemail = localStorage.getItem('googleaccountemail');
-    		return (eligibles[year] || eligibles[studentemail] || eligibles["others"]);
+    		var email = localStorage.getItem('googleaccountemail').replace(new RegExp("\\.","g"),"?");
+            if(localStorage.getItem("staff")){
+                return (eligibles[Staff] || eligibles["specppl"][email]) ;
+            }
+    		return (eligibles[year] || eligibles["specppl"][email]);
     	}
 
         function populatedrawer(){
@@ -357,6 +348,7 @@ function sendappdata() {
                     appverserver.on("value", function(snapshot) { // check the database for app versions and app list version
                         installedapplist = JSON.parse(localStorage.getItem('installedapplist'));
                         // these are the apps which are currently installed
+                        var eligibility = snapshot.val().eligibility;
                         rawdata = Object.entries(snapshot.val());
                         if (appver < Number(snapshot.val().CurrentVersion)) { // if there has been an update to the app list version                            
                             // for each installed app
@@ -399,7 +391,7 @@ function sendappdata() {
                                             installed = true;
                                         }
                                     }
-                                    if (installed == false && eligibleForApp(rawdata[k][0])) {
+                                    if (installed == false && eligibility(rawdata[k][0])) {
                                         var savingappid = rawdata[k][0];
                                         getNewData(savingappid, k);
                                     }
